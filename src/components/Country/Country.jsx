@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Country.css';
 
 const Country = ({country}) => {
-    console.log(country.languages.languages);
+   // console.log(country.languages.languages);
     
+    const [visited, setVisited] = useState(false);
+    const handleVisited = () => {
+        // if(visited) {
+        //     setVisited(false);
+        // }
+        // else{
+        //     setVisited(true);
+        // }
+        setVisited(!visited);
+    }
+
     return (
-        <div className='country'>
+        <div className={`country ${visited && 'country-visited'}`}>
             <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
             <h3>Name: {country.name.common} </h3>
             <p>Official Name: {country.name.official}</p>
             <p>Region: {country.region.region}</p>
             <p>Capital: {country.capital.capital}</p>
             <p>Population: {country.population.population}</p>
-            <p>Population: {country.languages}</p>
+            
             <p>Area: {country.area.area}</p>
             <p>Coninents: {country.continents.continents}</p>
 
@@ -21,6 +32,7 @@ const Country = ({country}) => {
                 <span  className="tooltip" data-tip={dataHints2}>CCN3: </span>
                 {country.ccn3.ccn3} 
               </p>
+              <button onClick={handleVisited} className="btn btn-info" > {visited ? 'Visited' : 'Not Visited'} </button>
         </div>
     );
 };
